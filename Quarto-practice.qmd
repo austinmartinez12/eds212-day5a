@@ -1,0 +1,65 @@
+---
+title: "Quarto Practice"
+format: html
+editor: visual
+execute: 
+  warning: false
+---
+
+Suppressing warnings and messages just for this code chunk
+
+```{r}
+#| warning: false
+#| message: false
+library(tidyverse)
+```
+
+running code but now showing code or output
+
+```{r}
+#| include: false
+#return first 6 lines of stawars data
+head(starwars)
+
+#return dimentions of star wars data
+dim(starwars)
+```
+
+Showing output but no code
+
+```{r}
+#| warning: false
+#| echo: false
+ggplot(data = starwars, aes(x= height, y= mass, color = mass)) + 
+  geom_point() + labs(x = "Height (cm)", 
+       y = "Mass (kg)")
+```
+
+Show only code and output.
+
+```{r}
+#| warning: false
+#| fig-cap: "Caption text"
+#| fig-alt: "alt text"
+ggplot(data = starwars, aes(x= height)) + 
+  geom_histogram(color = "blue", fill = "purple")
+```
+
+find summary stats for Starwars characters
+
+```{r}
+sw_height_mean <- mean(starwars$height, na.rm = TRUE)
+sw_height_median <- median(starwars$height, na.rm = TRUE)
+sw_height_var <- var(starwars$height, na.rm = TRUE)
+sw_height_sd <- sd(starwars$height, na.rm = TRUE)
+
+
+```
+
+The mean height of the characters in star wars is `r round(sw_height_mean, 1)` centimeters.
+
+The median height of the characters in star wars is `r round(sw_height_median, 1)` centimeters.
+
+The variance height of the characters in star wars is `r round(sw_height_var, 1)` centimeters.
+
+The standard deviation height of the characters in star wars is `r round(sw_height_sd, 1)` centimeters.
